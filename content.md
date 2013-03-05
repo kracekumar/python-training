@@ -74,7 +74,8 @@ True
 >>> print a
 Python
 ```
-*Parallel Assignment*
+
+**Parallel Assignment**
 ```
 >>> language, version = "Python", 2.7
 >>> print language, version
@@ -85,6 +86,32 @@ Python 2.7
 >>> x, y = x, x + y
 >>> print x, y
 23 43
+```
+
+**Swap Variable**
+```
+>>> x = 12
+>>> y = 21
+>>> x, y = y, x
+>>> print x, y
+21 12
+>>>
+```
+
+**String**
+```
+>>> language = "Python"
+>>> print language
+Python
+>>> language = 'Python'
+>>> print language
+Python
+>>> language = """Python"""
+>>> print language
+Python
+>>> description = """Python is a general-purpose, high-level programming language whose design philosophy emphasizes code readability. It is an expressive language which provides language constructs intended to enable clear programs on both a small and large scale. Python supports multiple programming paradigms, including object-oriented, imperative and functional programming styles.""">>> print description
+Python is a general-purpose, high-level programming language whose design philosophy emphasizes code readability. It is an expressive language which provides language constructs intended to enable clear programs on both a small and large scale. Python supports multiple programming paradigms, including object-oriented, imperative and functional programming styles.
+>>> 
 ```
 
 **Condition**
