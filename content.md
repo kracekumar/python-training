@@ -1,9 +1,9 @@
-*Python?* 
+**Python?**
 
 - Interpreted language
 - Multiparadigm
 
-*Introduction*
+**Introduction**
 ```
 hasgeek@hasgeek-MacBook:~/codes/python/hacknight$ python
 Python 2.7.3 (default, Aug  1 2012, 05:14:39) 
@@ -25,5 +25,4 @@ Type "help", "copyright", "credits" or "license" for more information.
 5
 >>> 23 / 4.0
 5.75
-
 ```
