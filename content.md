@@ -205,6 +205,10 @@ IndexError: list index out of range
 >>> all[1] = "insert"
 >>> all
 [[1, 2, 3], 'insert']
+>>> all
+[[1, 2, 3], 'insert']
+>>> 'insert' in all
+True
 >>> range(10)
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 >>> range(10, 2)
@@ -253,4 +257,176 @@ insert
 7
 9
 ```
- *nbuilt functions**
+
+**inbuilt functions**
+```
+>>> help([])
+>>> min([1, 2, 3])
+1
+>>> max([1, 2, 3])
+3
+>>> sum([1, 2, 3])
+6
+>>> pow(2, 3)
+8
+```
+
+**Tuples**
+
+- Tuple is a sequence type just like list, but it is immutable.
+- A tuple consists of a number of values separated by commas.
+
+```
+>>> t = (1, 2)
+>>> t
+(1, 2)
+>>> t[0]
+1
+>>> t[0] = 1.1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+>>> t = 1, 2
+>>> t
+(1, 2)
+>>> del t[0]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object doesn't support item deletion
+>>> for item in t:
+...     print item
+... 
+1
+2
+```
+
+**Slicing**
+```
+>>> l = range(10)
+>>> t = tuple(range(10))
+>>> l
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> t
+(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+>>> l[1:]
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> t[:3]
+(0, 1, 2)
+>>> l[0:8:2]
+[0, 2, 4, 6]
+>>> l
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> l[0:8:3]
+[0, 3, 6]
+>>> l[::2]
+[0, 2, 4, 6, 8]
+>>> l[::]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> l
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> l[::-1]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+>>> 
+```
+
+**Sets**
+
+- Sets are unordered collection of unique elements.
+
+```
+>>> x = set([1, 2, 1])
+>>> x
+set([1, 2])
+>>> x.add(3)
+>>> x
+set([1, 2, 3])
+>>> x = {1, 3, 4, 1}
+>>> x
+set([1, 3, 4])
+>>> 1 in x
+True
+>>> -1 in x
+False
+>>> 
+```
+
+**Again Lists**
+```
+>>> even_numbers = []
+>>> for number in range(0, 9):
+...     if number % 2 == 0:
+...         even_numbers.append(number)
+... 
+>>> even_numbers
+[0, 2, 4, 6, 8]
+```
+
+`As a programmer your job is write lesser code`
+
+**List Comprehensions**
+```
+>>> [x for x in range(10)]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> [x + 1 for x in range(10)]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+>>> numbers = []
+>>> for x in range(10):
+...     numbers.append(x + 1)
+... 
+>>> print numbers
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+>>> even_numbers = [x for x in range(10) if x %2 == 0]
+>>> even_numbers
+[0, 2, 4, 6, 8]
+>>> [(x, y) for x in range(5) for y in range(5) if (x+y)%2 == 0]
+[(0, 0), (0, 2), (0, 4), (1, 1), (1, 3), (2, 0), (2, 2), (2, 4), (3, 1), (3, 3), (4, 0), (4, 2), (4, 4)]
+>>> 
+```
+
+**Dictionaries**
+```
+>>> d = {'a': 1, 'b': 2, 'c': 3}
+>>> d['a']
+1
+>>> d.get('a')
+1
+>>> d['z']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'z'
+>>> d.get('z')
+>>>
+>>> d['a'] = 2
+>>> d
+{'a': 2, 'c': 3, 'b': 2}
+>>> d['z'] = 26
+>>> d
+{'a': 2, 'c': 3, 'b': 2, 'z': 26}
+>>> d.keys()
+['a', 'c', 'b', 'z']
+>>> d.values()
+[2, 3, 2, 26]
+>>> d.items()
+[('a', 2), ('c', 3), ('b', 2), ('z', 26)]
+>>> type(d.items())
+<type 'list'>
+>>> d = {'a': 2, 'b': 2, 'c': 3, 'z': 26}
+>>> for key in d:
+...     print key
+... 
+a
+c
+b
+z
+>>> for key, value in d.items():
+...     print key, value
+... 
+a 2
+c 3
+b 2
+z 26
+>>> 'a' in d
+True
+>>> d.has_key('a')
+True
+```
