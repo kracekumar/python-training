@@ -430,3 +430,322 @@ True
 >>> d.has_key('a')
 True
 ```
+
+**Function**
+
+- Just like a value can be associated with a name, a piece of logic can also be associated with a name by
+defining a function.
+
+```
+>>> def square(x):
+...     return x * x
+... 
+>>> square(2)
+4
+>>> square(2+1)
+9
+>>> square(x=5)
+25
+>>> def dont_return(name):
+...     print "Master %s ordered not to return value" % name
+... 
+>>> dont_return("Python")
+Master Python ordered not to return value
+>>> def power(base, to_raise=2):
+...     return base ** to_raise
+... 
+>>> power(3)
+9
+>>> power(3, 3)
+27
+>>> def power(to_raise=2, base):
+...     return base ** to_raise
+... 
+  File "<stdin>", line 1
+SyntaxError: non-default argument follows default argument 
+>>> square(3) + square(4)
+25
+>>> power(base=square(2))
+16
+>>> def sum_of_square(x, y):
+...     return square(x) + square(y)
+... 
+>>> sum_of_square(2, 3)
+13
+>>> s = square
+>>> s(4)
+16
+>>> def fxy(f, x, y):
+...     return f(x) + f(y)
+... 
+>>> fxy(square, 3, 4)
+25
+```
+
+**Variable Scopes**
+```
+>>> i = 0
+>>> def scope():
+...     print i
+... 
+>>> scope()
+0
+>>> def scope():
+...     i = 2
+...     print i
+... 
+>>> scope()
+2
+>>> x, y = 0, 0
+>>> def incr(x):
+...     y = x + 1
+...     return y
+... 
+>>> incr(5)
+6
+>>> print x, y
+0 0
+>>> numcalls = 0
+>>> def echo(message):
+...     global numcalls
+...     print "Message: %s" %(message)
+...     numcalls += 1
+... 
+>>> echo("Welcome")
+Message: Welcome
+>>> print numcalls
+1
+>>> echo("Is Python Driving you nuts?")
+Message: Is Python Driving you nuts?
+>>> print numcalls
+2
+>>> 
+```
+
+**Methods**
+- Methods are special kind of functions that work on an object.
+
+```
+>>> lang = "Python"
+>>> type(lang)
+<type 'str'>
+>>> dir(lang)
+['__add__', '__class__', '__contains__', '__delattr__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__',
+'__getitem__', '__getnewargs__', '__getslice__', '__gt__', '__hash__', '__init__', '__le__', '__len__', '__lt__',
+'__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__',
+'__sizeof__', '__str__', '__subclasshook__', '_formatter_field_name_split', '_formatter_parser',
+'capitalize', 'center', 'count', 'decode', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'index', 'isalnum',
+'isalpha', 'isdigit', 'islower', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'partition',
+'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines',
+'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+>>> lang.upper()
+'PYTHON'
+>>> help(lang.upper)
+>>> lang.startswith('P')
+True
+>>> help(lang.startswith)
+
+>>> lang.startswith('y', 1)
+True
+```
+
+**Files**
+```
+>>> f = open('foo.txt', 'w')
+>>> help(f)
+
+>>> f.write("First line")
+>>> f.close()
+>>> f = open('foo.txt', 'r')
+>>> f.readline()
+'First line'
+>>> f.readline()
+''
+>>> f = open('foo.txt', 'a')
+>>> f.write('Second line')
+>>> f.close()
+>>> f = open('foo.txt', 'r')
+>>> f.readline()
+'First lineSecond line'
+>>> f = open('foo.txt', 'a')
+>>> f.write("New line\n")
+>>> f.write("One more new line")
+>>> f.close()
+>>> f = open('foo.txt', 'r')
+>>> f.readline()
+'First lineSecond lineNew line\n'
+>>> f.readline()
+'One more new line'
+>>> f.readline()
+''
+>>> f.close()
+>>> f = open('foo.txt')
+>>> f.readlines()
+['First lineSecond lineNew line\n', 'One more new line']
+>>> f = open('foo.txt', 'w')
+>>> f.writelines(["1\n", "2\n"])
+>>> f.close()
+>>> f.readlines()
+>>> f = open('foo.txt')
+>>> f.readlines()
+['1\n', '2\n']
+>>> f.close()
+```
+
+**Exception Handling**
+```
+>>> f = open('a.txt')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IOError: [Errno 2] No such file or directory: 'a.txt'
+>>> try:
+...     f = open('a.txt')
+... except:
+...     print "Exception occured"
+... 
+Exception occured
+>>> try:
+...     f = open('a.txt')
+... except IOError, e:
+...     print e.message
+... 
+
+>>> e
+IOError(2, 'No such file or directory')
+>>> dir(e)
+['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__getitem__', '__getslice__', '__hash__', '__init__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__unicode__', 'args', 'errno', 'filename', 'message', 'strerror']
+>>> e.strerror
+'No such file or directory'
+>>> try:
+...     print l[4]
+... except IndexError, e:
+...     print e
+... 
+list index out of range
+>>> raise Exception("error message")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+Exception: error message
+>>> try:
+...     print "a"
+...     raise Exception("doom")
+... except:
+...     print "b"
+... else:
+...     print "c"
+... finally:
+...     print "d"
+... 
+a
+b
+d
+```
+
+**Object Oriented Programming**
+```
+>>> class BankAccount:
+        def __init__(self):
+            self.balance = 0
+
+        def withdraw(self, amount):
+            self.balance -= amount
+            return self.balance
+
+        def deposit(self, amount):
+            self.balance += amount
+            return self.balance
+
+>>> a = BankAccount()
+>>> b = BankAccount()
+>>> a.deposit(200)
+200
+>>> b.deposit(500)
+500
+>>> a.withdraw(20)
+180
+>>> b.withdraw(1000)
+-500
+>>> class MinimumBalanceAccount(BankAccount):
+...    def __init__(self, minimum_balance):
+...        BankAccount.__init__(self)
+...        self.minimum_balance = minimum_balance
+...
+...    def withdraw(self, amount):
+...        if self.balance - amount < self.minimum_balance:
+...            print "Sorry, you need to maintain minimum balance"
+...        else:
+...            return BankAccount.withdraw(self, amount)
+>>> a = MinimumBalanceAccount(500)
+>>> a
+<__main__.MinimumBalanceAccount instance at 0x7fa0bf329878>
+>>> a.deposit(2000)
+2000
+>>> a.withdraw(1000)
+1000
+>>> a.withdraw(1000)
+Sorry, you need to maintain minimum balance 
+>>> class A:
+...     def f(self):
+...         return self.g()
+...     def g(self):
+...         return "A"
+... 
+>>> a = A()
+>>> a.f()
+'A'
+>>> a.g()
+'A'
+>>> class A:
+...     def __init__(self):
+...         self._protected = 1
+...         self.__private = 2
+... 
+>>> a = A()
+>>> a._protected
+1
+>>> a.__private
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: A instance has no attribute '__private'
+```
+
+**Sample Python Program**
+```
+#! /usr/bin/env python
+#! -*- coding: utf-8 -*-
+
+
+class BankAccount:
+    def __init__(self):
+        self.balance = 0
+
+    def withdraw(self, amount):
+        self.balance -= amount
+        return self.balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+
+
+class MinimumBalanceAccount(BankAccount):
+    def __init__(self, minimum_balance):
+        BankAccount.__init__(self)
+        self.minimum_balance = minimum_balance
+
+    def withdraw(self, amount):
+        if self.balance - amount < self.minimum_balance:
+            print "Sorry, you need to maintain minimum balance"
+        else:
+            return BankAccount.withdraw(self, amount)
+
+    def __repr__(self):
+        return "MinimuBalanceAccount, Balance: %d" %(self.balance)
+
+
+if __name__ == "__main__":
+    a = MinimumBalanceAccount(500)
+    print a.deposit(5000)
+    print a.withdraw(4500)
+    print a.withdraw(500)
+```
