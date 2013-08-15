@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block main %}
+	<table>	
+		<th> Title </th> 
+		<th> Status </th>
+		<td>{{ task.title }}</td>
+		<td>{{ task.status }}</td>
+		<td><a href="{{ url_for('item_edit', title=task.title) }}"> Edit </a></td>
+		<td><a href="{{ url_for('item_delete', title=task.title) }}"> Delete </a></td>
+	</table>
+{% endblock %}

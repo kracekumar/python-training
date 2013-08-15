@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block main %}
+	<form method="POST">
+	{% if form.errors %}
+    	<div>
+      		Please correct the indicated errors.
+    	</div>
+    {% endif %}
+    {{ form.hidden_tag() }}
+  	{% if form.csrf_token.errors %}
+    	{% for error in form.csrf_token.errors %}<div>{{ error }}</div>{% endfor %}
+  	{% endif %}
+  	{% for field in form %}
+  		{%- if field.type not in ['CSRFTokenField', 'HiddenField'] -%}
+  			<label for="{{ field.id }}">{{ field.label.text }} {% if field.flags.required -%}
+      			<span title="Required">*</span>{%- endif %}
+      		</label>
+      		{% if field.description %}<p class="help-block">{{ field.description }}</p>{% endif %}
+      		{{ field()}}
+      		<br/><br/>
+      	{% endif %}
+  	{% endfor %}
+  	<button type="submit"/> Submit </button>
+	</form>
+{% endblock %}

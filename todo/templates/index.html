@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block main %}
+	{% for message in get_flashed_messages() %}
+		{{ message }}
+	{% endfor %}
+	{% if tasks %}
+		<a href="{{ url_for('new') }}"> New Task </a> </p>
+		<table>
+		<tr>
+			<th> Title </th> 
+			<th> Status </th>
+		</tr>
+	{% else %}
+		<p> No tasks. <a href="{{ url_for('new') }}"> New </a> </p>
+	{% endif %}
+	{% for task in tasks %}
+		<tr>
+			<td>{{ task.title }}</td>
+			<td>{% if task.status == True %}
+					Completed 
+				{% else %}
+					Pending
+				{% endif %}
+			</td>
+			<td><a href="{{ url_for('edit_item', title=task.title) }}"> Edit </a></td>
+			<td><a href="{{ url_for('delete_item', title=task.title) }}"> Delete </a></td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}
